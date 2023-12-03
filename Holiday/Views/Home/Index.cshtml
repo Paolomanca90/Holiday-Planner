@@ -1,0 +1,74 @@
+﻿@model Holiday.Areas.Identity.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="max-w-5xl px-6 py-16 mx-auto">
+        <div class="lg:flex lg:items-center">
+            <div class="lg:w-1/2 lg:me-4 lg:pe-8">
+                <img class="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="">
+
+                <h1 class="mt-4 text-2xl font-medium text-gray-600 dark:text-gray-300 lg:text-3xl capitalize">Pianifica il tuo tempo</h1>
+
+                <h1 class="mt-4 text-gray-800 md:text-lg dark:text-white">
+                    Gestire le ferie e i permessi diventa un'esperienza facile e veloce, consentendoti di concentrarti su ciò che conta di più: il tuo benessere e la tua produttività.
+                </h1>
+            </div>
+
+            <div class="mt-8 lg:w-1/2 lg:mt-0">
+                <form class="w-full lg:max-w-xl" method="post" id="account" asp-area="Identity" asp-page="/Account/Login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="relative flex items-center">
+                        <span class="absolute">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </span>
+
+                        <input asp-for="Input.Email" autocomplete="username" aria-required="true" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Indirizzo email">
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="relative flex items-center mt-4">
+                        <span class="absolute">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </span>
+
+                        <input asp-for="Input.Password" autocomplete="current-password" aria-required="true" class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password">
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <div class="checkbox mt-4 ms-2">
+                            <label asp-for="Input.RememberMe" class="flex items-center gap-2">
+                                <input  asp-for="Input.RememberMe" style="cursor:pointer;" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 md:flex md:items-center">
+                        <button id="login-submit" type="submit" class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg md:w-1/2 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                            Accedi
+                        </button>
+
+                        <div class="w-1/2">
+                            <a id="forgot-password" asp-area="Identity" asp-page="/Account/ForgotPassword" class="inline-block mt-4 text-center text-blue-500 md:mt-0 md:mx-6 hover:underline dark:text-blue-400">
+                                Password dimenticata?
+                            </a>
+                            <a id="resend-confirmation" asp-area="Identity" asp-page="/Account/ResendEmailConfirmation" class="inline-block mt-4 text-center text-blue-500 md:mt-0 md:mx-6 hover:underline dark:text-blue-400">
+                                Reinvia email  di conferma
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-center mt-10">
+        <img class="object-cover w-full h-96 rounded-xl lg:w-4/5" src="https://images.unsplash.com/photo-1632772998001-cc9bf6f7c852?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+    </div>
+</section>
