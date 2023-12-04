@@ -6,32 +6,45 @@
 }
 
 <h3>@ViewData["Title"]</h3>
+
 <partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Nome" class="form-control" disabled />
-                <label asp-for="Nome" class="form-label"></label>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Cognome" class="form-control" disabled />
-                <label asp-for="Cognome" class="form-label"></label>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label"></label>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
-        </form>
+<div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div x-data="{ isOpen: false }" class="relative flex justify-end px-3 pt-3">
+        <!-- Dropdown toggle button -->
+        <button x-on:click="isOpen = !isOpen" class="relative z-10 text-sm block p-2 text-gray-500 dark:text-gray-400 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:bg-gray-800 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 16 3" fill="currentColor">
+                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+            </svg>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div x-show="isOpen"
+        x-on:click.away="isOpen = false"
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="opacity-0 scale-90"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-90"
+             class="absolute right-5 top-12 z-20 w-48 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800 border border-blue-100">
+            <form id="download-data" asp-page="DownloadPersonalData" method="post">
+                <button type="submit" class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Download dati</button>
+            </form>
+         </div>
     </div>
+    <form id="profile-form" method="post" class="flex flex-col items-center pb-10 px-4">
+        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" alt="avatar" />
+        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">@Model.Nome @Model.Cognome</h5>
+        <span class="text-sm text-gray-500 dark:text-gray-400">@Model.Username</span>
+        <div class="flex flex-col mt-4 md:mt-6 text-center w-full md:w-1/2">
+            <label asp-for="Input.PhoneNumber" class="text-gray-500 dark:text-gray-400 mb-2"></label>
+            <input asp-for="Input.PhoneNumber" class="block w-full py-1 text-gray-700 bg-white text-center border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+        </div>
+        <button id="update-profile-button" type="submit" class="w-full mt-3 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg md:w-1/2 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">Salva</button>
+    </form>
 </div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
