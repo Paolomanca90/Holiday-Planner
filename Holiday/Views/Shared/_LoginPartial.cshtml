@@ -2,15 +2,15 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<ul class="flex gap-7 items-center">
+<ul class="flex flex-col lg:flex-row gap-7 items-center">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-            <a class="nav-link text-dark hover:underline" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Ciao <span class="italic font-semibold text-lg">@User.Identity?.Name</span></a>
+            <a class="text-gray-700 transition-colors duration-300 transform dark:text-gray-200 dark:hover:text-gray-400 hover:text-gray-500 underline" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Ciao <span class="italic font-semibold text-lg">@User.Identity?.Name</span></a>
     </li>
-    <li class="nav-item">
+    <li>
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="block px-5 py-2 mt-4 text-sm text-center text-white capitalize bg-blue-600 rounded-lg lg:mt-0 hover:bg-blue-500 lg:w-auto">Logout</button>
+                <button type="submit" class="w-full px-5 py-2 text-sm text-center text-white capitalize bg-blue-600 rounded-lg lg:mt-0 hover:bg-blue-500 lg:w-auto">Logout</button>
         </form>
     </li>
 }

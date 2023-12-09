@@ -10,11 +10,11 @@
 }
 
 <div>
-    <div class="flex">
+    <div class="flex flex-col lg:flex-row h-screen">
         <div>
             <partial name="_ManageNav" />
         </div>
-        <div class="w-full flex flex-col items-center justify-center">
+        <div class="w-full h-full flex flex-col items-center justify-center">
             @RenderBody()
         </div>
     </div>
